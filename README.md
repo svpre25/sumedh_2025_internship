@@ -1,5 +1,4 @@
 # Sumedh 2025 Internship
-Summary of work/discoveries/research May 2025 - Sept 2025
 
 
 # Workout duration–based scoring Algorithms
