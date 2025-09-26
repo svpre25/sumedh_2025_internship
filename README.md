@@ -45,17 +45,16 @@ The goal was to build a robust, scalable scoring system—one that is invariant 
 
 
 # Physical Activity Pipeline: Working
-When a "user" send a phyical activity log-entry to our server:
-User-->
-  Ingress-->
-    Django View-->
-        Manual Log Service-->
-            Daily Log Entry-->
-                EnQ Celery Task to invoke a pipeline-->
-                    Orchertator Recives LogID to process (FastAPI)-->
-                        Invokes DB Reader MS (FastAPI)
-                        Invokes Scoring Microservice (FastAPI)
-                        Invokes DB Writer Microservice (FastAPI)
-                        
+When a user sends a physical activity log entry to our server, the flow is as follows:
+- **User**
+  → **Ingress**
+    → **Django View**
+      → **Manual Log Service**
+        → **DailyLog Entry**
+          → **Enqueue Celery Task** to invoke the processing pipeline
+            → **Orchestrator** receives Log ID to process (FastAPI)
+              → Invokes **DB Reader Microservice** (FastAPI)  
+              → Invokes **Scoring Microservice** (FastAPI)  
+              → Invokes **DB Writer Microservice** (FastAPI)
 
 
