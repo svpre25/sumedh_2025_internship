@@ -13,11 +13,20 @@ Tests varying size batches of DailyLog database entries form small batches like 
 
 [Compute Tests](./Reddis%20%26%20Celery%20Execution%20Time.pdf)
 
-Reddis & Celery Execution Time
-Using Signalys.py as a scxoring engine
+
+# Using Signals as a proxy for On insert
+
+# Client Logging
+Frontend and backend logs aren't connected, making it impossible to trace frontend errors back to their root causes in the backend system. Can't correlate frontend errors with backend issues due to disconnected logging systems.
+[Client Logging] (https://github.com/Preffect-Inc/Preffect-HealthEngine/blob/main/app/views/client_log_view.py)
+
+# Kafka 
+
+# Fan Out
+
+# Fast/Ninja APIS
 
 
-PA score--Kafka code 
+# PA pipleine. Working!
 
 
-PA score status
