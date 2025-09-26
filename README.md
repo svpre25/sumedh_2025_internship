@@ -151,7 +151,7 @@ sequenceDiagram
 4. **Send a New Log**  
    [Send a New Log Request](https://preffect-mvp.postman.co/workspace/Preffect-APIDocumentation~56e5032b-9980-4336-805d-8d35d8a77143/request/44929468-c1baa90a-3200-4639-90f3-9b1fb9f83956?action=share&source=copy-link&creator=44929468&ctx=documentation)
 
-### Sample Score Trace Output
+# Sample Score Trace Output
 ```
 orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 1. Received request for log  74a51383-0c1f-4fc2-b69c-e7210235cb89
 orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 2. Retrieved log data (user: retrieving...)
@@ -171,3 +171,10 @@ orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: POST /compute_live -> {'d
 orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 9. Saved entry score to database
 orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: POST /write_entry -> {'id': 11, 'daily_log_id': '74a51383-0c1f-4fc2-b69c-e7210235cb89', 'duration_score': 100, 'intensity_score': 20, 'consistency_score': 100, 'calories_score': 0, 'overall_score': 73}
 orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 10. Saved live score to database
+```
+
+# Attempt to estimate calories better from videos
+A single head on view of food results in poor calorie estimation. Apple's live photos capture a fewe seconds before and after a photo is taken. Can we use CLIP, "PCA" or unsupervised learning to see if we can capture the most vairable angles, and from ther eget more accurate volumetoc calroe estiamntes? 
+[Finding Here](./https://github.com/svpre25/sumedh_2025_internship/blob/main/keyframe_demo.ipynb)
+
+
