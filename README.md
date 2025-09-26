@@ -136,7 +136,10 @@ sequenceDiagram
 
 # Steps to See Live Physical Activity Score Pipeline
 1. Depoly Image Tag: 1.9.8.post5-.-g7b8ac440.d20250926t1618 from ACR
-3. [Generate Access Token](https://preffect-mvp.postman.co/workspace/Preffect-APIDocumentation~56e5032b-9980-4336-805d-8d35d8a77143/example/44929468-4ea90d34-9823-4377-865b-e420008cc778?action=share&creator=44929468)
+2. Run stern --namespace preffect-sumedh . --color always | grep --color=always "SCORE TRACE". This connects to all the pods in a namespace and searches for the string SCORE TRACER.
+3. [Generate Access Token](https://preffect-mvp.postman.co/workspace/Preffect-APIDocumentation~56e5032b-9980-4336-805d-8d35d8a77143/request/44929468-15295d79-580e-4b57-9906-1813e734add6?action=share&creator=44929468)
+4. [Send a new Log](https://preffect-mvp.postman.co/workspace/Preffect-APIDocumentation~56e5032b-9980-4336-805d-8d35d8a77143/request/44929468-c1baa90a-3200-4639-90f3-9b1fb9f83956?action=share&source=copy-link&creator=44929468&ctx=documentation)
+5. [See colors](https://github.com/svpre25/sumedh_2025_internship/blob/main/Demo.mov)
  
 
 
