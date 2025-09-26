@@ -60,7 +60,7 @@ User
 
 
 # Pipeline Sequence
-This image, credits to greptile, sums up my apporach.
+This diagram is clearest desciption of my pipeline. (Note: I did not make this by hand: credits to Greptile AI reviewer)
 ```mermaid
 sequenceDiagram
     participant C as Client/Trigger
