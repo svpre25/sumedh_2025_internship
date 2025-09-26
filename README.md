@@ -13,7 +13,7 @@ Tests varying size batches of DailyLog database entries form small batches like 
 [Compute Tests](./Reddis%20%26%20Celery%20Execution%20Time.pdf)
 
 
-# Using Signals as a proxy for On insert
+# Using Signals as a proxy for on insert
 
 # Client Logging
 Frontend and backend logs aren't connected, making it impossible to trace frontend errors back to their root causes in the backend system. Can't correlate frontend errors with backend issues due to disconnected logging systems.
