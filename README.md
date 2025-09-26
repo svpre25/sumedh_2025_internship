@@ -23,7 +23,7 @@ The goal was to build a robust, scalable scoring system—one that is invariant 
 
 [Kafka Backend](https://github.com/Preffect-Inc/Preffect-HealthEngine/pull/374/files#diff-f0b36047804fc1a021d20667d8da0073a215761639235064f52630a03d570e10)
 
-# Failed Designs
+# Failed Design/Directions
 - **Using Django Signal**  
   Tempting for loose coupling, but problematic with Celery. Signal handlers can conflict with async task execution and complicate debugging.
 
@@ -38,10 +38,10 @@ The goal was to build a robust, scalable scoring system—one that is invariant 
   - Edges into node = required vars (used to calculate semaphores)  
   - Used topological sort for serializability  
   - Used level-order traversal to maximize parallelism  
-  worked--killed
+  worked--killed due to uninterparbility and existance of airflow dag
 
 - **Kafka-Based Event Bus**  
-  Provided strong decoupling and flexibility. After implementatio
+  Provided strong decoupling and flexibility. After implementing, descsion was made that honrizontal scaling in pods could handle flow.
 
 # Physical Activity Pipeline: Working
 <pre lang="markdown"><code>```
@@ -58,25 +58,5 @@ User
               → Invokes DB Writer Microservice (FastAPI)
 ```</code></pre>
 
-orchestrator-7c7f7fbf84-qt7jb orchestrator SCORE TRACE: 1. Received request for log c392d69a-8d0c-420b-8166-ebf3222e3bd5
-db-reader-5867bbff8c-648sz db-reader SCORE TRACE (DB): Fetching log c392d69a-8d0c-420b-8166-ebf3222e3bd5
-orchestrator-7c7f7fbf84-qt7jb orchestrator SCORE TRACE: GET /get_log_by_id/c392d69a-8d0c-420b-8166-ebf3222e3bd5 -> {'user_id': '7c9b01d3-9f89-401c-af37-3c17d6dc355f', 'log_id': 'c392d69a-8d0c-420b-8166-ebf3222e3bd5', 'created_at': '2025-09-26T15:44:01.351528Z', 'datetime_filter': '2024-09-26T14:30:00Z', 'timezone': 'UTC', 'log_type': 'exercise', 'log_access_origin': 'quest_id: 74042272-ca60-410b-9cce-1b597643329f', 'source': 'manual', 'entry_method': ['manual', 'audio'], 'priority': 'first', 'data': {'notes': 'optional_string', 'new_log': True, 'duration': 6666.0, 'end_time': '2024-09-26T14:30:00+00:00', 'intensity': 1.0, 'start_time': '2024-09-26T14:30:00+00:00', 'specific_activity': 'screaming', 'distance_or_amount': 'optional string'}, 'meta_data': {}}
-db-reader-5867bbff8c-648sz db-reader SCORE TRACE (DB): Fetching user profile 7c9b01d3-9f89-401c-af37-3c17d6dc355f
-orchestrator-7c7f7fbf84-qt7jb orchestrator SCORE TRACE: GET /get_user_profile/7c9b01d3-9f89-401c-af37-3c17d6dc355f -> {'user_id': '7c9b01d3-9f89-401c-af37-3c17d6dc355f', 'date_of_birth': '1995-01-01', 'gender': 'male', 'height': '175', 'zip_code': '12345', 'additional_notes': 'Created for scoring pipeline testing', 'TDEE': 2000.0, 'BMR': 1500.0, 'BMI': 22.5}
-orchestrator-7c7f7fbf84-qt7jb orchestrator SCORE TRACE: GET /same_day_entries/c392d69a-8d0c-420b-8166-ebf3222e3bd5 -> [{'id': 1, 'daily_log_id': '491d6da7-65bd-4497-b5eb-586b88ff5c10', 'duration_score': 100, 'intensity_score': 20, 'consistency_score': 80, 'calories_score': 100, 'overall_score': 75}, {'id': 3, 'daily_log_id': '45e1a02f-bf58-496e-ba20-8576e09e519f', 'duration_score': 100, 'intensity_score': 20, 'consistency_score': 40, 'calories_score': 0, 'overall_score': 53}, {'id': 4, 'daily_log_id': 'be001428-d8bd-45c9-b29e-7e90723b25fc', 'duration_score': 100, 'intensity_score': 20, 'consistency_score': 60, 'calories_score': 0, 'overall_score': 60}]
-orchestrator-7c7f7fbf84-qt7jb orchestrator SCORE TRACE: GET /live_entries_last_calendar_days/7c9b01d3-9f89-401c-af37-3c17d6dc355f -> []
-orchestrator-7c7f7fbf84-qt7jb orchestrator SCORE TRACE: GET /live_entries_last_available/7c9b01d3-9f89-401c-af37-3c17d6dc355f -> [{'id': 1, 'user_id': '7c9b01d3-9f89-401c-af37-3c17d6dc355f', 'date': '2024-09-26', 'duration_score': 100, 'consistency_score': 20, 'calories_score': 100, 'overall_score': 75, 'seven_day_score': 75}]
-activity-scorer-5fb57d9fc8-nf2zf activity-scorer SCORE TRACE (Scorer): Computing entry score for workout
-orchestrator-7c7f7fbf84-qt7jb orchestrator SCORE TRACE: POST /compute_entry -> {'duration_score': 100, 'intensity_score': 20, 'consistency_score': 80, 'calories_score': None, 'overall_score': 67}
-activity-scorer-5fb57d9fc8-nf2zf activity-scorer SCORE TRACE (Scorer): Entry scores: duration_score=100 intensity_score=20 consistency_score=80 calories_score=None overall_score=67
-activity-scorer-5fb57d9fc8-nf2zf activity-scorer SCORE TRACE (Scorer): Computing live score with 0 calendar days, 1 available days
-activity-scorer-5fb57d9fc8-nf2zf activity-scorer SCORE TRACE (Scorer): Live scores (freq from 1 calendar days, avg from 1 available): duration_score=100 consistency_score=20 calories_score=None overall_score=67 seven_day_score=75
-orchestrator-7c7f7fbf84-qt7jb orchestrator SCORE TRACE: POST /compute_live -> {'duration_score': 100, 'consistency_score': 20, 'calories_score': None, 'overall_score': 67, 'seven_day_score': 75}
-db-writer-6495d9c9fc-qkbpw db-writer SCORE TRACE (DB Writer): Writing entry score for log c392d69a-8d0c-420b-8166-ebf3222e3bd5
-db-writer-6495d9c9fc-qkbpw db-writer SCORE TRACE (DB Writer): Created ActivityEntry 7
-orchestrator-7c7f7fbf84-qt7jb orchestrator SCORE TRACE: POST /write_entry -> {'id': 7, 'daily_log_id': 'c392d69a-8d0c-420b-8166-ebf3222e3bd5', 'duration_score': 100, 'intensity_score': 20, 'consistency_score': 80, 'calories_score': 0, 'overall_score': 67}
-db-writer-6495d9c9fc-qkbpw db-writer SCORE TRACE (DB Writer): Writing live score for user 7c9b01d3-9f89-401c-af37-3c17d6dc355f on 2024-09-26
-db-writer-6495d9c9fc-qkbpw db-writer SCORE TRACE (DB Writer): Updated ActivityLive 1
-orchestrator-7c7f7fbf84-qt7jb orchestrator SCORE TRACE: POST /write_live -> {'id': 1, 'user_id': '7c9b01d3-9f89-401c-af37-3c17d6dc355f', 'date': '2024-09-26', 'duration_score': 100, 'consistency_score': 20, 'calories_score': 0, 'overall_score': 67, 'seven_day_score': 75}
-orchestrator-7c7f7fbf84-qt7jb orchestrator SCORE TRACE: 11. Scoring pipeline complete for log c392d69a-8d0c-420b-8166-ebf3222e3bd5
+
 
