@@ -24,9 +24,16 @@ Frontend and backend logs aren't connected, making it impossible to trace fronte
 
 # Fan Out
 
+
+# Design 1
+
+
+# To maximize task parallelism )Graph with Indegree of nodes sempahores)
+
+# Manual Fn roiting 
+
 # Fast/Ninja APIS
 
-
-# PA pipleine. Working!
+# PA pipleine--status
 
 
