@@ -44,7 +44,7 @@ The goal was to build a robust, scalable scoring system—one that is invariant 
   Provided strong decoupling and flexibility. After implementatio
 
 
-<pre lang="markdown"><code>```text
+<pre lang="markdown"><code>```
 # Physical Activity Pipeline: Working
 
 When a "user" sends a physical activity log-entry to our server:
