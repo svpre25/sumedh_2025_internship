@@ -173,7 +173,7 @@ orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: POST /write_entry -> {'id
 orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 10. Saved live score to database
 ```
 
-# Attempt to estimate calories better from videos
+# Experiment: Better Calorie Estimate from videos?
 A single head-on view of food results in poor calorie estimation. Apple’s Live Photos capture a few seconds before and after a photo is taken. Can we use CLIP, PCA, or unsupervised learning to see if we can capture the most variable angles, and from there get more accurate volumetric calorie estimates? Finding here.
 
 
