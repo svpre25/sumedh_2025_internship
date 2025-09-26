@@ -151,8 +151,34 @@ sequenceDiagram
 4. **Send a New Log**  
    [Send a New Log Request](https://preffect-mvp.postman.co/workspace/Preffect-APIDocumentation~56e5032b-9980-4336-805d-8d35d8a77143/request/44929468-c1baa90a-3200-4639-90f3-9b1fb9f83956?action=share&source=copy-link&creator=44929468&ctx=documentation)
 
-5. **See Colors / Demo**  
-   [Watch Demo.mov](https://github.com/svpre25/sumedh_2025_internship/blob/main/Demo.mov)
+5. **Terminal Trace**  
+```ansi
+\033[32morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 1. Received request for log \033[36m74a51383-0c1f-4fc2-b69c-e7210235cb89\033[0m
+\033[32morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 2. Retrieved log data (user: retrieving...)\033[0m
+\033[33morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: GET /get_log_by_id/74a51383-0c1f-4fc2-b69c-e7210235cb89\033[0m -> \033[36m{...}\033[0m
+\033[32morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 3. Retrieved user profile (TDEE: fetching...)\033[0m
+\033[33morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: GET /get_user_profile/7c9b01d3-9f89-401c-af37-3c17d6dc355f\033[0m -> \033[36m{...}\033[0m
+\033[32morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 4. Retrieved same-day entries (fetching... entries)\033[0m
+\033[33morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: GET /same_day_entries/74a51383-0c1f-4fc2-b69c-e7210235cb89\033[0m -> \033[36m[...]\033[0m
+\033[32morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 5. Retrieved 7-day history (fetching... entries)\033[0m
+\033[33morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: GET /live_entries_last_calendar_days/7c9b01d3-9f89-401c-af37-3c17d6dc355f\033[0m -> \033[36m[]\033[0m
+\033[32morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 6. Retrieved available history (fetching... entries)\033[0m
+\033[33morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: GET /live_entries_last_available/7c9b01d3-9f89-401c-af37-3c17d6dc355f\033[0m -> \033[36m[...]\033[0m
+\033[32morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 7. Computed entry scores: computing...\033[0m
+\033[33morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: POST /compute_entry\033[0m -> \033[36m{'duration_score': 100, 'intensity_score': 20, 'consistency_score': 100, 'calories_score': \033[31mNone\033[36m, 'overall_score': 73}\033[0m
+\033[32morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 8. Computed live scores: computing...\033[0m
+\033[33morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: POST /compute_live\033[0m -> \033[36m{'duration_score': 100, 'consistency_score': 20, 'calories_score': \033[31mNone\033[36m, 'overall_score': 73, 'seven_day_score': 73}\033[0m
+\033[32morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 9. Saved entry score to database\033[0m
+\033[33morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: POST /write_entry\033[0m -> \033[36m{...}\033[0m
+\033[32morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 10. Saved live score to database\033[0m
+\033[33morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: POST /write_live\033[0m -> \033[36m{...}\033[0m
+\033[32morchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 11. Scoring pipeline complete for log 74a51383-0c1f-4fc2-b69c-e7210235cb89\033[0m
+
+\033[90m# Init containers (not part of pipeline output)\033[0m
+\033[90m- orchestrator-bf6748448-2gmtm › linkerd-init\033[0m
+\033[90m- redis-0 › linkerd-init\033[0m
+\033[90m- worker-76cf6fc999-rdkrk › linkerd-init\033[0m
+```
  
 
 
