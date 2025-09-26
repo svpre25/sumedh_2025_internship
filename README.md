@@ -45,15 +45,21 @@ The goal was to build a robust, scalable scoring system—one that is invariant 
 
 
 # Physical Activity Pipeline: Working
+<pre lang="markdown"><code>```text
+# ✅ Physical Activity Pipeline: Working
+
+When a "user" sends a physical activity log-entry to our server:
+
 User
   → Ingress
     → Django View
       → Manual Log Service
         → Daily Log Entry
           → Enqueue Celery Task to invoke pipeline
-            → Orchestrator receives Log ID (FastAPI)
+            → Orchestrator receives Log ID to process (FastAPI)
               → Invokes DB Reader Microservice (FastAPI)
               → Invokes Scoring Microservice (FastAPI)
               → Invokes DB Writer Microservice (FastAPI)
+```</code></pre>
 
 
