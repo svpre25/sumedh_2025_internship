@@ -128,9 +128,5 @@ sequenceDiagram
     O-->>-C: SuccessResponse with scores
     Note over O: TRACE: 11. Pipeline complete
 
-# Steps to See Live
-1. Depoly Image Tag: 1.9.8.post5-.-g7b8ac440.d20250926t1618 from ACR
-2. Generate Access Token(https://preffect-mvp.postman.co/workspace/Preffect-APIDocumentation~56e5032b-9980-4336-805d-8d35d8a77143/example/44929468-4ea90d34-9823-4377-865b-e420008cc778?action=share&creator=44929468)
- 
 
 
