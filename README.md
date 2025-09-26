@@ -43,7 +43,7 @@ The goal was to build a robust, scalable scoring system—one that is invariant 
 - **Kafka-Based Event Bus**  
   Provided strong decoupling and flexibility. After implementatio
 
-
+# Physical Activity Pipeline: Working
 <pre lang="markdown"><code>```
 When a "user" sends a physical activity log-entry to our server:
 User
