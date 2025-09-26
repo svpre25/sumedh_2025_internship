@@ -46,10 +46,8 @@ The goal was to build a robust, scalable scoring system—one that is invariant 
 
 # Physical Activity Pipeline: Working
 <pre lang="markdown"><code>```text
-# ✅ Physical Activity Pipeline: Working
-
+#Physical Activity Pipeline: Working
 When a "user" sends a physical activity log-entry to our server:
-
 User
   → Ingress
     → Django View
