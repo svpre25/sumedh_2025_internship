@@ -27,13 +27,7 @@ The goal was to build a robust, scalable scoring system—one that is invariant 
 
 # Fan Out
 
-
-# Design 1
-
-
 # To maximize task parallelism )Graph with Indegree of nodes sempahores)
-
-# Manual Fn roiting 
 
 # Fast/Ninja APIS
 
