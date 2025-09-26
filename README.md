@@ -127,7 +127,7 @@ sequenceDiagram
     
     O-->>-C: SuccessResponse with scores
     Note over O: TRACE: 11. Pipeline complete
-
+```
 
 
 
