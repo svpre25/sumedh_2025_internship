@@ -171,6 +171,9 @@ orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: POST /compute_live -> {'d
 orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 9. Saved entry score to database
 orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: POST /write_entry -> {'id': 11, 'daily_log_id': '74a51383-0c1f-4fc2-b69c-e7210235cb89', 'duration_score': 100, 'intensity_score': 20, 'consistency_score': 100, 'calories_score': 0, 'overall_score': 73}
 orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 10. Saved live score to database
+
+
+### Sample Score Trace Output
 orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: POST /write_live -> {'id': 1, 'user_id': '7c9b01d3-9f89-401c-af37-3c17d6dc355f', 'date': '2024-09-26', 'duration_score': 100, 'consistency_score': 20, 'calories_score': 0, 'overall_score': 73, 'seven_day_score': 73}
 orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 11. Scoring pipeline complete for log 74a51383-0c1f-4fc2-b69c-e7210235cb89
 ```
