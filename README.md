@@ -13,24 +13,36 @@ Tests varying size batches of DailyLog database entries form small batches like 
 [Compute Tests](./Reddis%20%26%20Celery%20Execution%20Time.pdf)
 
 
-# Using Signals as a proxy for on insert
-
 # Client Logging
 Frontend and backend logs aren't connected, making it impossible to trace frontend errors back to their root causes in the backend system. Can't correlate frontend errors with backend issues due to disconnected logging systems.
 
 [Client Logging](https://github.com/Preffect-Inc/Preffect-HealthEngine/blob/main/app/views/client_log_view.py)
 
-# Kafka 
+# Kafka Pub/Sub + Fanout
 The goal was to build a robust, scalable scoring system—one that is invariant to scale, easily modifiable, and supports both real-time database score updates and downstream ML tasks. To achieve this, a resilient publisher-listener architecture was implemented, featuring thread-local producers and consumers that automatically write offsets for reliable processing.
 
 [Kafka Backend](https://github.com/Preffect-Inc/Preffect-HealthEngine/pull/374/files#diff-f0b36047804fc1a021d20667d8da0073a215761639235064f52630a03d570e10)
 
-# Fan Out
+# Failed Designs
+Using Django Signal: tempting for loose coupling, but problematic with Celery. signals handlers can conflict with async task execution and complicate debugging
+Manual Function Routing: exec(fn + param_name), technically worked, but it’s an unsafe and unreadable reinvention of dispatch mechanisms. better to rely on native routing tools--killed halfway thru progress
+Excessive Dict Packing/Unpacking: trying to avoid "slinging" by nesting/unpacking deeply. resulted in unreadable code -- killed.
+Graph-Based Execution Engine:  Tasks as nodes; edges = required inputs. Topological sort for serializability; level-order traversal for parallelism. Worked—but was killed due to existing tools.
+Kafka-Based Event Bus: Provided strong decoupling and flexibility. After implemtntation deemed unecessary.
 
-# To maximize task parallelism )Graph with Indegree of nodes sempahores)
 
-# Fast/Ninja APIS
-
-# PA pipleine--status
+# Physical Activity Pipeline: Working
+When a "user" send a phyical activity log-entry to our server:
+User-->
+  Ingress-->
+    Django View-->
+        Manual Log Service-->
+            Daily Log Entry-->
+                EnQ Celery Task to invoke a pipeline-->
+                    Orchertator Recives LogID to process (FastAPI)-->
+                        Invokes DB Reader MS (FastAPI)
+                        Invokes Scoring Microservice (FastAPI)
+                        Invokes DB Writer Microservice (FastAPI)
+                        
 
 
