@@ -21,6 +21,8 @@ Frontend and backend logs aren't connected, making it impossible to trace fronte
 [Client Logging] (https://github.com/Preffect-Inc/Preffect-HealthEngine/blob/main/app/views/client_log_view.py)
 
 # Kafka 
+The goal was to build a robust, scalable scoring system—one that is invariant to scale, easily modifiable, and supports both real-time database score updates and downstream ML tasks. To achieve this, a resilient publisher-listener architecture was implemented, featuring thread-local producers and consumers that automatically write offsets for reliable processing.
+https://github.com/Preffect-Inc/Preffect-HealthEngine/pull/374/files#diff-f0b36047804fc1a021d20667d8da0073a215761639235064f52630a03d570e10
 
 # Fan Out
 
