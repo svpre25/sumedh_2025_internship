@@ -60,6 +60,7 @@ User
 
 
 # Pipeline Sequence
+This image, credits to greptile, sums up my apporach.
 ```mermaid
 sequenceDiagram
     participant C as Client/Trigger
