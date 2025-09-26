@@ -43,8 +43,8 @@ The goal was to build a robust, scalable scoring system—one that is invariant 
 - **Kafka-Based Event Bus**  
   Provided strong decoupling and flexibility. After implementing, descsion was made that honrizontal scaling in pods could handle flow.
 
-# Physical Activity Pipeline: Working
-<pre lang="markdown"><code>```
+# Physical Activity Pipeline (Data Flow): Working
+```
 When a "user" sends a physical activity log-entry to our server:
 User
   → Ingress
@@ -56,7 +56,7 @@ User
               → Invokes DB Reader Microservice (FastAPI)
               → Invokes Scoring Microservice (FastAPI)
               → Invokes DB Writer Microservice (FastAPI)
-```</code></pre>
+```
 
 
 # Pipeline Sequence
