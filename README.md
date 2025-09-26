@@ -151,7 +151,9 @@ sequenceDiagram
 4. **Send a New Log**  
    [Send a New Log Request](https://preffect-mvp.postman.co/workspace/Preffect-APIDocumentation~56e5032b-9980-4336-805d-8d35d8a77143/request/44929468-c1baa90a-3200-4639-90f3-9b1fb9f83956?action=share&source=copy-link&creator=44929468&ctx=documentation)
 
-5. **Terminal Trace**  ```
+### Sample `SCORE TRACE` Output
+
+```
 orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 1. Received request for log  74a51383-0c1f-4fc2-b69c-e7210235cb89
 orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 2. Retrieved log data (user: retrieving...)
 orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: GET /get_log_by_id/74a51383-0c1f-4fc2-b69c-e7210235cb89 -> {'user_id': '7c9b01d3-9f89-401c-af37-3c17d6dc355f', 'log_id': '74a51383-0c1f-4fc2-b69c-e7210235cb89', 'created_at': '2025-09-26T16:22:53.907305Z', 'datetime_filter': '2024-09-26T14:30:00Z', 'timezone': 'UTC', 'log_type': 'exercise', 'log_access_origin': 'quest_id: 74042272-ca60-410b-9cce-1b597643329f', 'source': 'manual', 'entry_method': ['manual', 'audio'], 'priority': 'first', 'data': {'notes': 'optional_string', 'new_log': True, 'duration': 6666.0, 'end_time': '2024-09-26T14:30:00+00:00', 'intensity': 1.0, 'start_time': '2024-09-26T14:30:00+00:00', 'specific_activity': 'screaming', 'distance_or_amount': 'optional string'}, 'meta_data': {}}
@@ -178,5 +180,3 @@ orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 11. Scoring pipeline comp
 - redis-0 › linkerd-init
 - worker-76cf6fc999-rdkrk › linkerd-init
 ```
-
-
