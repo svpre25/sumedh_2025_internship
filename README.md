@@ -58,3 +58,69 @@ User
               → Invokes DB Writer Microservice (FastAPI)
 ```</code></pre>
 
+sequenceDiagram
+    participant C as Client/Trigger
+    participant O as Orchestrator
+    participant DBR as DB Reader
+    participant AS as Activity Scorer
+    participant DBW as DB Writer
+    participant DB as Database
+    
+    C->>+O: POST /api/score_log (log_id)
+    Note over O: TRACE: 1. Received request
+    
+    O->>+DBR: GET /get_log_by_id/{log_id}
+    DBR->>+DB: Query DailyLog
+    DB-->>-DBR: Log data
+    DBR-->>-O: Log data + user_id
+    Note over O: TRACE: 2. Retrieved log data
+    
+    O->>+DBR: GET /get_user_profile/{user_id}
+    DBR->>+DB: Query UserProfile  
+    DB-->>-DBR: Profile data
+    DBR-->>-O: Profile data
+    Note over O: TRACE: 3. Retrieved user profile
+    
+    O->>+DBR: GET /same_day_entries/{log_id}
+    DBR->>+DB: Query same day ActivityEntries
+    DB-->>-DBR: Same day entries
+    DBR-->>-O: Same day entries
+    Note over O: TRACE: 4. Retrieved same-day entries
+    
+    O->>+DBR: GET /live_entries_last_calendar_days/{user_id}
+    DBR->>+DB: Query 7-day calendar history
+    DB-->>-DBR: Calendar history
+    DBR-->>-O: Calendar history
+    Note over O: TRACE: 5. Retrieved 7-day history
+    
+    O->>+DBR: GET /live_entries_last_available/{user_id}
+    DBR->>+DB: Query available history
+    DB-->>-DBR: Available history  
+    DBR-->>-O: Available history
+    Note over O: TRACE: 6. Retrieved available history
+    
+    O->>+AS: POST /compute_entry (EntryScoreRequest)
+    Note over AS: Calculate duration, intensity,<br/>consistency, calories scores
+    AS-->>-O: Entry scores
+    Note over O: TRACE: 7. Computed entry scores
+    
+    O->>+AS: POST /compute_live (LiveScoreRequest)
+    Note over AS: Calculate live scores +<br/>7-day rolling average
+    AS-->>-O: Live scores
+    Note over O: TRACE: 8. Computed live scores
+    
+    O->>+DBW: POST /write_entry (WriteEntryRequest)
+    DBW->>+DB: Update/Create ActivityEntry
+    DB-->>-DBW: Entry saved
+    DBW-->>-O: Success
+    Note over O: TRACE: 9. Saved entry score
+    
+    O->>+DBW: POST /write_live (WriteLiveRequest) 
+    DBW->>+DB: Update/Create ActivityLive
+    DB-->>-DBW: Live score saved
+    DBW-->>-O: Success
+    Note over O: TRACE: 10. Saved live score
+    
+    O-->>-C: SuccessResponse with scores
+    Note over O: TRACE: 11. Pipeline complete
+
