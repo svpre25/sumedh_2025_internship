@@ -44,7 +44,7 @@ The goal was to build a robust, scalable scoring system—one that is invariant 
   Provided strong decoupling and flexibility. After implementatio
 
 
-# Physical Activity Pipeline: Working
+<pre lang="markdown"><code>```text
 When a "user" sends a physical activity log-entry to our server:
 User
   → Ingress
@@ -56,5 +56,6 @@ User
               → Invokes DB Reader Microservice (FastAPI)
               → Invokes Scoring Microservice (FastAPI)
               → Invokes DB Writer Microservice (FastAPI)
+```</code></pre>
 
 
