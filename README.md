@@ -24,11 +24,24 @@ The goal was to build a robust, scalable scoring system—one that is invariant 
 [Kafka Backend](https://github.com/Preffect-Inc/Preffect-HealthEngine/pull/374/files#diff-f0b36047804fc1a021d20667d8da0073a215761639235064f52630a03d570e10)
 
 # Failed Designs
-- Using Django Signal: tempting for loose coupling, but problematic with Celery. signals handlers can conflict with async task execution and complicate debugging.
-- Manual Function Routing: exec(fn + param_name), technically worked, but it’s an unsafe and unreadable reinvention of dispatch mechanisms. better to rely on native routing tools--killed halfway thru progress
-- Dict Packing/Unpacking: trying to avoid "slinging" by nesting/unpacking deeply. resulted in unreadable code -- killed.
-- Graph-Based Execution Engine:  Tasks as nodes; edges = required inputs. Topological sort for serializability; level-order traversal for parallelism. Worked—but was killed due to existing tools.
-- Kafka-Based Event Bus: Provided strong decoupling and flexibility. After implemtntation deemed unecessary.
+- **Using Django Signal**  
+  Tempting for loose coupling, but problematic with Celery. Signal handlers can conflict with async task execution and complicate debugging.
+
+- **Manual Function Routing**  
+  `exec(fn + param_name)` — technically worked, but it’s an unsafe and unreadable reinvention of dispatch mechanisms. Better to rely on native routing tools. Killed halfway through.
+
+- **Dict Packing/Unpacking**  
+  Trying to avoid “slinging” by deeply nesting/unpacking dicts. Resulted in unreadable code — killed.
+
+- **Graph-Based Execution Engine**  
+  - Tasks = nodes  
+  - Edges into node = required vars (used to calculate semaphores)  
+  - Used topological sort for serializability  
+  - Used level-order traversal to maximize parallelism  
+  It worked but was abandoned due to complexity and maintainability concerns.
+
+- **Kafka-Based Event Bus**  
+  Provided strong decoupling and flexibility. After implementatio
 
 
 # Physical Activity Pipeline: Working
