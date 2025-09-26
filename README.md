@@ -28,7 +28,7 @@ The goal was to build a robust, scalable scoring system—one that is invariant 
   Tempting for loose coupling, but problematic with Celery. Signal handlers can conflict with async task execution and complicate debugging.
 
 - **Manual Function Routing**  
-  `exec(fn + param_name)` — technically worked, but it’s an unsafe and unreadable reinvention of dispatch mechanisms. Better to rely on native routing tools. Killed halfway through.
+  `exec(fn + param_name)` — technically worked, but it’s an unsafe and unreadable reinvention of dispatch mechanisms. Better to rely on native routing tools. Killed.
 
 - **Dict Packing/Unpacking**  
   Trying to avoid “slinging” by deeply nesting/unpacking dicts. Resulted in unreadable code — killed.
@@ -38,7 +38,7 @@ The goal was to build a robust, scalable scoring system—one that is invariant 
   - Edges into node = required vars (used to calculate semaphores)  
   - Used topological sort for serializability  
   - Used level-order traversal to maximize parallelism  
-  It worked but was abandoned due to complexity and maintainability concerns.
+  worked--killed
 
 - **Kafka-Based Event Bus**  
   Provided strong decoupling and flexibility. After implementatio
