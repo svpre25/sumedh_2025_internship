@@ -8,10 +8,12 @@ Examines deficits (ie how scores short but intense workouts as zero), gives a fa
 [Scoring Formula Variants](./Brainstorming%20Improvements%20to%20the%20Physical%20Activity%20Score%20Computation.pdf)
 
 
-**Stress Testing Celery/Reddis for Incoming/Streaming Data**
+# Stress Testing Celery/Reddis for Incoming/Streaming Data
 Tests varying size batches of DailyLog database entries form small batches like 10-50 entries up to hundreds &  submitting each entry as a Celery background task and measuring how long the entire process took. Caompared submission speed, task completion time, and overall throughput across different to see where the system performs most efficiently.
 
 
+
+Reddis & Celery Execution Time
 Using Signalys.py as a scxoring engine
 
 
