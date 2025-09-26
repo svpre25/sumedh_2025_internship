@@ -174,7 +174,7 @@ orchestrator-bf6748448-2gmtm orchestrator SCORE TRACE: 10. Saved live score to d
 ```
 
 # Attempt to estimate calories better from videos
-A single head on view of food results in poor calorie estimation. Apple's live photos capture a fewe seconds before and after a photo is taken. Can we use CLIP, "PCA" or unsupervised learning to see if we can capture the most vairable angles, and from ther eget more accurate volumetoc calroe estiamntes? 
+A single head-on view of food results in poor calorie estimation. Apple’s Live Photos capture a few seconds before and after a photo is taken. Can we use CLIP, PCA, or unsupervised learning to see if we can capture the most variable angles, and from there get more accurate volumetric calorie estimates? Finding here.
 [Finding Here](./https://github.com/svpre25/sumedh_2025_internship/blob/main/keyframe_demo.ipynb)
 
 
